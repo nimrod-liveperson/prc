@@ -17,7 +17,7 @@
         window.postMessage(JSON.stringify(token), '*');
       }
       catch(ex) {
-        window.postMessage(token, '*');
+        window.postMessage(ex, '*');
       }
     }
     function errorCalled(error) {
@@ -34,7 +34,6 @@
      <form action="?" method="POST">
       <div id="recaptcha-container"></div>
       <br>
-      <input type="submit" value="Submit">
     </form>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
     </div>
