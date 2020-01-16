@@ -8,17 +8,26 @@
     <script>
     window.onloadRecaptchaCallback = function() {
     grecaptcha.render({
-    'data-callback': postTokenToParent
-    'data-siteKey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF'
+    'data-callback': postTokenToParent,
+    'data-sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
+    'data-error-callback': errorCalled
     });
     
     function postTokenToParent(token) {
-    try {
-    window.postMessage(JSON.stringify(token), '*');
+      try {
+        window.postMessage(JSON.stringify(token), '*');
+      }
+      catch(ex) {
+        window.postMessage(token, '*');
+      }
     }
-    catch(ex) {
-    window.postMessage(token, '*');
-    }
+    function errorCalled(error) {
+      try {
+        window.postMessage(JSON.stringify(error), '*');
+      }
+      catch(ex) {
+        window.postMessage(error, '*');
+      }
     }
   };
       </script>
