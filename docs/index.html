@@ -1,33 +1,44 @@
- <!-- V2 - invisible -->
+// V2 - checkbox
 
 
 <html>
   <head>
-  <script>
-    function onSubmit(token) {
-      alert('thanks ' + document.getElementById('field').value);
-    }
-
-    function validate(event) {
-      event.preventDefault();
-      grecaptcha.execute();
-    }
-
-    function onload() {
-      var element = document.getElementById('submit');
-      element.onclick = validate;
-    }
-  </script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <title>
+      ReCaptcha Test
+    </title>
   </head>
   <body>
-    <form>
-      <div id='recaptcha' class="g-recaptcha"
-          data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF"
-          data-callback="onSubmit"
-          data-size="invisible"></div>
-      <button id='submit'>submit</button>
-    </form>
-    <script>onload();</script>
+    <script>
+      window.onloadRecaptchaCallback = function() {
+        grecaptcha.render('recaptcha-container', {
+        'callback': postTokenToParent,
+        'sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
+        'error-callback': errorCalled
+        });
+        function postTokenToParent(token) {
+          try {
+            window.postMessage(JSON.stringify(token), '*');
+          }
+          catch(ex) {
+            window.postMessage(ex, '*');
+          }
+        }
+        function errorCalled(error) {
+          try {
+            window.postMessage(JSON.stringify(error), '*');
+          }
+          catch(ex) {
+            window.postMessage(error, '*');
+          }
+        }
+      };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
+      <form action="?" method="POST">
+        <div id="recaptcha-container"></div>
+        <br>
+      </form>
+    <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
+    </div>
   </body>
 </html>
