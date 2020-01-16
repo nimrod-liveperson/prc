@@ -7,7 +7,7 @@
   <body>
     <script>
     window.onloadRecaptchaCallback = function() {
-    grecaptcha.render({
+    grecaptcha.render('recaptcha-container', {
     'data-callback': postTokenToParent,
     'data-sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
     'data-error-callback': errorCalled
@@ -31,6 +31,11 @@
   };
       </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
+     <form action="?" method="POST">
+      <div id="recaptcha-container"></div>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
     </div>
   </body>
