@@ -17,7 +17,7 @@
         });
         function postTokenToParent(token) {
           try {
-            window.postMessage(JSON.stringify(token), '*');
+            window.postMessage('Token: ' + JSON.stringify(token), '*');
           }
           catch(ex) {
             window.postMessage(ex, '*');
