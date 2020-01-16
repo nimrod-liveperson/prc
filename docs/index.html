@@ -3,6 +3,8 @@
     <title>
       ReCaptcha Test
     </title>
+  </head>
+  <body>
     <script>
     window.onloadRecaptchaCallback = function() {
     grecaptcha.render({
@@ -20,8 +22,6 @@
   };
       </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
-  </head>
-  <body>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
     </div>
   </body>
