@@ -10,11 +10,7 @@
 
     function validate(event) {
       event.preventDefault();
-      if (!document.getElementById('field').value) {
-        alert("You must add text to the required field");
-      } else {
-        grecaptcha.execute();
-      }
+      grecaptcha.execute();
     }
 
     function onload() {
@@ -26,7 +22,6 @@
   </head>
   <body>
     <form>
-      Name: (required) <input id="field" name="field">
       <div id='recaptcha' class="g-recaptcha"
           data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF"
           data-callback="onSubmit"
