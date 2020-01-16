@@ -3,7 +3,21 @@
     <title>
       ReCaptcha Test
     </title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    window.onloadRecaptchaCallback = function() {
+    grecaptcha.render({
+    'data-callback': postTokenToParent
+    });
+    
+    function postTokenToParent(token) {
+    try {
+    window.postMessage(JSON.stringify(token), '*');
+    }
+    catch(ex) {
+    window.postMessage(token, '*');
+    }
+    }
+  };
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
   </head>
   <body>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
