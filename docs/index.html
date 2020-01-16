@@ -6,35 +6,36 @@
   </head>
   <body>
     <script>
-    window.onloadRecaptchaCallback = function() {
-    grecaptcha.render('recaptcha-container', {
-    'callback': postTokenToParent,
-    'sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
-    'error-callback': errorCalled
-    });
-    function postTokenToParent(token) {
-      try {
-        window.postMessage(JSON.stringify(token), '*');
-      }
-      catch(ex) {
-        window.postMessage(ex, '*');
-      }
-    }
-    function errorCalled(error) {
-      try {
-        window.postMessage(JSON.stringify(error), '*');
-      }
-      catch(ex) {
-        window.postMessage(error, '*');
-      }
-    }
-  };
-      </script>
+      window.onloadRecaptchaCallback = function() {
+        grecaptcha.render('recaptcha-container', {
+        'callback': postTokenToParent,
+        'sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
+        'error-callback': errorCalled
+        });
+        function postTokenToParent(token) {
+          try {
+            window.postMessage(JSON.stringify(token), '*');
+          }
+          catch(ex) {
+            window.postMessage(ex, '*');
+          }
+        }
+        function errorCalled(error) {
+          try {
+            window.postMessage(JSON.stringify(error), '*');
+          }
+          catch(ex) {
+            window.postMessage(error, '*');
+          }
+        }
+      };
+    </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
-     <form action="?" method="POST">
-      <div id="recaptcha-container"></div>
-      <br>
-    </form>
+      <form action="?" method="POST">
+        <div id="recaptcha-container"></div>
+          <button class="g-recaptcha" data-sitekey='6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF' data-callback='onSubmit'>Submit</button>
+        <br>
+      </form>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
     </div>
   </body>
