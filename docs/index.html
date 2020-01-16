@@ -8,9 +8,9 @@
     <script>
     window.onloadRecaptchaCallback = function() {
     grecaptcha.render('recaptcha-container', {
-    'data-callback': postTokenToParent,
-    'data-sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
-    'data-error-callback': errorCalled
+    'callback': postTokenToParent,
+    'sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
+    'error-callback': errorCalled
     });
     function postTokenToParent(token) {
       try {
