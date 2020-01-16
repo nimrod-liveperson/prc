@@ -1,3 +1,6 @@
+ <!-- V2 - invisible -->
+
+
 <html>
   <head>
     <title>
@@ -28,15 +31,18 @@
             window.postMessage(error, '*');
           }
         }
+        function onSubmit(token) {
+          document.getElementById("recaptcha-container").submit();
+        }
       };
     </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
-      <form action="?" method="POST">
-        <div id="recaptcha-container"></div>
-          <button class="g-recaptcha-button" data-sitekey='6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF' data-callback='onSubmit'>Submit</button>
-        <br>
-      </form>
-    <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
-    </div>
+
+    <form action="?" method="POST">
+      <div id="recaptcha-container"></div>
+        <button class="g-recaptcha-button" data-sitekey='6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF' data-callback='onSubmit'>Submit</button>
+      <br>
+    </form>
+    <!-- <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback=""></div> -->
   </body>
 </html>
