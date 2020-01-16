@@ -3,6 +3,7 @@
     <title>
       ReCaptcha Test
     </title>
+    <script type="text/javascript">
     window.onloadRecaptchaCallback = function() {
     grecaptcha.render({
     'data-callback': postTokenToParent
@@ -17,6 +18,7 @@
     }
     }
   };
+      </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
   </head>
   <body>
