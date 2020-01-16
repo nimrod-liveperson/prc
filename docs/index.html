@@ -13,7 +13,8 @@
     'data-error-callback': errorCalled
     });
     
-    function postTokenToParent(token) {
+  };
+          function postTokenToParent(token) {
       try {
         window.postMessage(JSON.stringify(token), '*');
       }
@@ -29,7 +30,7 @@
         window.postMessage(error, '*');
       }
     }
-  };
+
       </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
     <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
