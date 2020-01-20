@@ -17,18 +17,18 @@
         });
         function postTokenToParent(token) {
           try {
-            window.postMessage('Token: ' + JSON.stringify(token), '*');
+            window.webkit.messageHandlers.tokenReceived.postMessage('Token: ' + JSON.stringify(token), '*') 
           }
           catch(ex) {
-            window.postMessage(ex, '*');
+            window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*') 
           }
         }
         function errorCalled(error) {
           try {
-            window.postMessage(JSON.stringify(error), '*');
+            window.webkit.messageHandlers.tokenReceived.postMessage(JSON.stringify(error), '*');
           }
           catch(ex) {
-            window.postMessage(error, '*');
+            window.webkit.messageHandlers.tokenReceived.postMessage(error, '*');
           }
         }
       };
@@ -38,7 +38,7 @@
         <div id="recaptcha-container"></div>
         <br>
       </form>
-    <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" data-callback="printResponseToken" data-expired-callback="">
+    <div class="g-recaptcha" data-sitekey="6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-callback="printResponseToken" data-expired-callback="">
     </div>
   </body>
 </html>
