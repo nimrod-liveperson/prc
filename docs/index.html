@@ -13,7 +13,8 @@
         grecaptcha.render('recaptcha-container', {
         'callback': postTokenToParent,
         'sitekey': '6LfEsasUAAAAAPq4iL8Ayn_9QX7DVy-E7xOG2QeF',
-        'error-callback': errorCalled
+        'error-callback': errorCalled,
+        'size'='compact'
         });
         function postTokenToParent(token) {
           try {
