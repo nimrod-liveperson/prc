@@ -16,10 +16,11 @@
         });
         function postTokenToParent(token) {
           try {
-            window.webkit.messageHandlers.tokenReceived.postMessage(token, '*') 
+            window.webkit.messageHandlers.tokenReceived.postMessage(token, '*')
+            window.tokenReceivedInterface.onTokenRecieved(token)
           }
           catch(ex) {
-            window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*') 
+            window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*')
           }
         }
         function errorCalled(error) {
