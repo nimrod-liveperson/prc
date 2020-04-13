@@ -17,7 +17,7 @@
         function postTokenToParent(token) {
           try {
             window.webkit.messageHandlers.tokenReceived.postMessage(token, '*')
-            window.tokenReceivedInterface.onTokenRecieved(token)
+            tokenReceivedInterface.onTokenRecieved(token)
           }
           catch(ex) {
             window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*')
@@ -26,9 +26,11 @@
         function errorCalled(error) {
           try {
             window.webkit.messageHandlers.tokenReceived.postMessage(JSON.stringify(error), '*');
+ tokenReceivedInterface.onTokenError(error)
           }
           catch(ex) {
             window.webkit.messageHandlers.tokenReceived.postMessage(error, '*');
+ tokenReceivedInterface.onTokenError(error)
           }
         }
       };
