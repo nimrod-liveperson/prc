@@ -1,43 +1,64 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
     <title>
-      ReCaptcha Test
+        ReCaptcha Test
     </title>
-  </head>
-  <body>
-    <script>
-      window.onloadRecaptchaCallback = function() {
+</head>
+<body>
+<script>
+    window.onloadRecaptchaCallback = function() {
         grecaptcha.render('recaptcha-container', {
-        'callback': postTokenToParent,
-        'sitekey': '6Lf8W-gUAAAAABo1H1upytzXNTqA2pk636VqAuil',
-        'error-callback': errorCalled,
-        'size': 'compact'
+            'callback': postTokenToParent,
+            'sitekey': '6Lf8W-gUAAAAABo1H1upytzXNTqA2pk636VqAuil',
+            'error-callback': errorCalled,
+            'size': 'compact'
         });
-        function postTokenToParent(token) {
+       function postTokenToParent(token) {
           try {
-            window.webkit.messageHandlers.tokenReceived.postMessage(token, '*') 
+          if (window.webkit != undefined) {
+            window.webkit.messageHandlers.tokenReceived.postMessage(token, '*')
+            }
+            if(tokenReceivedInterface!=undefined){
+            tokenReceivedInterface.onTokenRecieved(token)
+            }
           }
           catch(ex) {
-            window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*') 
+          if (window.webkit != undefined) {
+            window.webkit.messageHandlers.tokenReceived.postMessage(ex, '*')
+            }
+            if(tokenReceivedInterface!=undefined){
+            tokenReceivedInterface.onTokenRecieved(token)
+            }
           }
         }
         function errorCalled(error) {
           try {
+          if (window.webkit != undefined) {
             window.webkit.messageHandlers.tokenReceived.postMessage(JSON.stringify(error), '*');
-          }
+            }
+                        if(tokenReceivedInterface!=undefined){
+ tokenReceivedInterface.onTokenError(error)
+ }          }
           catch(ex) {
+          if (window.webkit != undefined) {
             window.webkit.messageHandlers.tokenReceived.postMessage(error, '*');
+            }
+                        if(tokenReceivedInterface!=undefined){
+ tokenReceivedInterface.onTokenError(error)
+ }
           }
         }
       };
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
-      <form action="?" method="POST">
-        <div id="recaptcha-container"></div>
-        <br>
-      </form>
-    <div class="g-recaptcha" data-sitekey="6Lf8W-gUAAAAABo1H1upytzXNTqA2pk636VqAuil" data-size="compact" data-callback="printResponseToken" data-expired-callback="">
-    </div>
-  </body>
+
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadRecaptchaCallback&render=explicit" async defer></script>
+<form action="?" method="POST">
+    <div id="recaptcha-container"></div>
+    <br>
+</form>
+<div class="g-recaptcha" data-sitekey="6Lf8W-gUAAAAABo1H1upytzXNTqA2pk636VqAuil" data-size="compact" data-callback="printResponseToken" data-expired-callback="">
+</div>
+</body>
 </html>
